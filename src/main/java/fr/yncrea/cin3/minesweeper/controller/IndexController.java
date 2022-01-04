@@ -13,7 +13,6 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/minesweeper")
 public class IndexController {
     @Autowired
     private IndexRepository indexs;
@@ -23,7 +22,7 @@ public class IndexController {
         return "index";
     }
     //afficher le formulaire d’ajout
-    @GetMapping({"/create", "/"})
+    @GetMapping({"/minesweeper/create", "/"})
     public String create(@PathVariable(required = false) UUID id, Model model) {
         var form = new IndexForm();
         model.addAttribute("form", form); //Création d’un objet vide comme formulaire
@@ -38,7 +37,7 @@ public class IndexController {
         return "create";
     }
     //traiter le formulaire (ajout en base), puis redirige vers la liste
-    @PostMapping({"/create"})
+    @PostMapping({"/minesweeper/create"})
     public String createGame(@Valid @ModelAttribute("form") IndexForm form, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("form", form);
@@ -55,7 +54,7 @@ public class IndexController {
         return "redirect:/";
     }
 
-    @PostMapping("/delete/{id}")
+    @PostMapping("/minesweeper/delete/{id}")
     public String delete(@PathVariable UUID id) {
         indexs.deleteById(id);
         return "redirect:/";

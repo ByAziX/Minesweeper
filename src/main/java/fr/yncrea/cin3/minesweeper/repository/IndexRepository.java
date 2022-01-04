@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface IndexRepository extends JpaRepository<Minefield, UUID> {
-
-}
+public interface IndexRepository extends JpaRepository<Minefield, UUID> {}

@@ -1,6 +1,7 @@
 package fr.yncrea.cin3.minesweeper.form;
 
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -10,12 +11,11 @@ import java.util.UUID;
 public class IndexForm {
     private UUID id;
 
-
+    @Max(20)
     private Long width;
 
-
+    @Min(2)
     private Long height;
-
 
     private Long count;
 
