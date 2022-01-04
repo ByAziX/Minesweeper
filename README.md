@@ -1,2 +1,0 @@
-# Minesweeper
-Projet java
