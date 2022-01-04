@@ -10,15 +10,13 @@ import java.util.UUID;
 public class IndexForm {
     private UUID id;
 
-    @NotBlank
-    @Size(min = 10)
+
     private Long width;
 
-    @NotBlank
-    @Size(min = 10)
+
     private Long height;
 
-    @Min(0)
+
     private Long count;
 
     public UUID getId() {

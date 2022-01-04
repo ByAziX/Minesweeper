@@ -52,7 +52,13 @@ public class IndexController {
         m.setHeight(form.getHeight());
         m.setWidth(form.getWidth());
         indexs.save(m);
-        return "redirect:/index";
+        return "redirect:/";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable UUID id) {
+        indexs.deleteById(id);
+        return "redirect:/";
     }
 
 }

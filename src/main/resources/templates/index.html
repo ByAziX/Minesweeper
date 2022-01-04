@@ -22,14 +22,12 @@
         </thead>
 
         <tbody>
-        <tr th:each="index: ${index}" th:object="${index}">
+        <tr th:each="index: ${indexs}" th:object="${index}">
             <td th:text="*{width}">0x<td th:text="*{height}">0</td></td>
 
             <td th:text="*{count}">0</td>
 
             <td>
-                <a href="#" th:href="@{/minesweeper/play/{id}(id=*{id})}" class="btn btn-primary">
-                    <i class="ri-user-add-line"></i></a>
 
                 <form action="#" th:action="@{/minesweeper/delete/{id}(id=*{id})}" method="post" style="display: inline">
                     <button type="submit" class="btn btn-danger"><i class="ri-delete-bin-line"></i></button>
