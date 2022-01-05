@@ -63,24 +63,15 @@ public class IndexController {
         indexs.save(m);
 
 
-        service.create(m.getWidth(), m.getHeight(), m.getCount());
-      /*  while (m.getCount() > count) {
-            try {
-                int random_x = (int) (Math.random() * m.getWidth());
-                int random_y = (int) (Math.random() * m.getHeight());
-                service.addMine(m, random_x, random_y);
-                count++;
-            } catch (MinesweeperException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        m = service.create(m.getWidth(), m.getHeight(), m.getCount());
         for (int row = 0; row < m.getWidth(); row++) {
             System.out.println();
             for (int col = 0; col < m.getHeight(); col++) {
 
                 System.out.print(m.getMinefield()[row][col]);
             }
-        }*/
+        }
+
         return "redirect:/";
     }
 

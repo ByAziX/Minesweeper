@@ -18,24 +18,19 @@ public class MinesweeperEngineService {
      * @return
      */
     public Minefield create(long width, long height, long count) {
-       Minefield m = new Minefield(width, height, count);
-        while (m.getCount() > count) {
+        Minefield m = new Minefield(width, height, count);
+        int tour = 0;
+        while (m.getCount() > tour) {
             try {
                 int random_x = (int) (Math.random() * m.getWidth());
                 int random_y = (int) (Math.random() * m.getHeight());
                 addMine(m, random_x, random_y);
-                count++;
+                tour++;
             } catch (MinesweeperException e) {
                 System.out.println(e.getMessage());
             }
         }
-        for (int row = 0; row < m.getWidth(); row++) {
-            System.out.println();
-            for (int col = 0; col < m.getHeight(); col++) {
 
-                System.out.print(m.getMinefield()[row][col]);
-            }
-        }
         return m;
     }
 
@@ -61,11 +56,11 @@ public class MinesweeperEngineService {
         int[][] minefield_tab = minefield.getMinefield();
 
 
-            if (minefield_tab[(int) x][(int) y] != 1) {
-                minefield_tab[(int) x][(int) y] = 1;
-        }else{
-                throw new MinesweeperException("il y déjà une mine");
-            }
+        if (minefield_tab[(int) x][(int) y] != 1) {
+            minefield_tab[(int) x][(int) y] = 1;
+        } else {
+            throw new MinesweeperException("il y déjà une mine");
+        }
 
         minefield.setMinefield(minefield_tab);
     }
