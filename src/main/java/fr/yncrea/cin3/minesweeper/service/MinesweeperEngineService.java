@@ -18,7 +18,7 @@ public class MinesweeperEngineService {
      */
     public Minefield create(long width, long height, long count) {
 
-        return new Minefield(width, height);
+        return new Minefield(width, height, count);
     }
 
     /**
@@ -29,24 +29,31 @@ public class MinesweeperEngineService {
      * @param y
      */
     public void play(Minefield minefield, long x, long y) {
-        addMine(minefield,x,y);
+
     }
 
     /**
      * Add a mine on the field
+     *
      * @param minefield
      * @param x
      * @param y
      */
     public void addMine(Minefield minefield, long x, long y) {
-       /* long random_x = (long) (Math.random() * x);
-        long random_y = (long) (Math.random() * y);
-        int[][] mine = new int[0][];
-        for (int i = 0; i < minefield.getCount(); i++) {
-            mine[(int) x][(int) y] = 1;
-            System.out.println(mine[(int) x][(int) y]);
+        int[][] minefield_tab = new int[(int) x][(int) y];
+        int count = 0;
+        while (minefield.getCount() != count) {
+
+            int random_x = (int) (Math.random() * x);
+            int random_y = (int) (Math.random() * y);
+            if (minefield_tab[random_x][random_y] != 1) {
+                minefield_tab[random_x][random_y] = 1;
+                count++;
+            }
         }
-        minefield.setMinefield(mine);*/
+
+
+        minefield.setMinefield(minefield_tab);
     }
 
     /**

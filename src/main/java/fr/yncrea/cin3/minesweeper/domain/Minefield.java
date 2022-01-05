@@ -25,7 +25,14 @@ public class Minefield {
     public Minefield(long width, long height) {
         this.width = width;
         this.height = height;
-        //this.minefield = new int[(int) width][(int) height];
+
+    }
+
+    public Minefield(long width, long height,long count) {
+        this.width = width;
+        this.height = height;
+        this.count = count;
+        this.minefield = new int[(int) width][(int) height];
     }
 
     public UUID getId() {
@@ -60,11 +67,11 @@ public class Minefield {
         this.count = count;
     }
 
-    /*public int[][] getMinefield() {
+    public int[][] getMinefield() {
         return minefield;
     }
 
     public void setMinefield(int[][] minefield) {
         this.minefield = minefield;
-    }*/
+    }
 }
