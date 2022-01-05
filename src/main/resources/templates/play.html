@@ -12,16 +12,11 @@
 
     <table class="table_minesweeper">
 
-        <tr>
-            <td class="td_minesweeper" ></td>
-            <td class="td_minesweeper" ></td>
-            <td class="td_minesweeper" ></td>
+        <tr th:each="row: ${index.getMinefield()}">
+            <td class="td_minesweeper" th:each="column:${index.getMinefield()[row]}" th:text="-"></td>
+
         </tr>
-        <tr>
-            <td class="td_minesweeper" ></td>
-            <td class="td_minesweeper" ></td>
-            <td class="td_minesweeper" ></td>
-        </tr>
+
 
     </table>
 
