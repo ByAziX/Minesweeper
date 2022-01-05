@@ -3,6 +3,9 @@ package fr.yncrea.cin3.minesweeper.service;
 import fr.yncrea.cin3.minesweeper.domain.Minefield;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Random;
+
 @Service
 public class MinesweeperEngineService {
     /**
@@ -26,6 +29,7 @@ public class MinesweeperEngineService {
      * @param y
      */
     public void play(Minefield minefield, long x, long y) {
+        addMine(minefield,x,y);
     }
 
     /**
@@ -35,7 +39,14 @@ public class MinesweeperEngineService {
      * @param y
      */
     public void addMine(Minefield minefield, long x, long y) {
-
+       /* long random_x = (long) (Math.random() * x);
+        long random_y = (long) (Math.random() * y);
+        int[][] mine = new int[0][];
+        for (int i = 0; i < minefield.getCount(); i++) {
+            mine[(int) x][(int) y] = 1;
+            System.out.println(mine[(int) x][(int) y]);
+        }
+        minefield.setMinefield(mine);*/
     }
 
     /**
