@@ -14,6 +14,7 @@ public class MinesweeperEngineService {
      * @return
      */
     public Minefield create(long width, long height, long count) {
+
         return new Minefield(width, height);
     }
 

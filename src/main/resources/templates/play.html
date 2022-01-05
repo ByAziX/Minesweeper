@@ -1,0 +1,22 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:fragment="title">Welcome to Minesweeper</title>
+</head>
+<body>
+<div th:fragment="content">
+
+    <h1 th:text="${index.getId()}">Welcome to Minesweeper</h1>
+
+    <table class="table">
+
+        <tr th:each=row:"${}">
+            <td th:each="column:${}"></td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+</body>
+</html>

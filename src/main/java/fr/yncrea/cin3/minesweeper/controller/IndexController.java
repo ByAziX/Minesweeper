@@ -10,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class IndexController {
@@ -59,5 +59,16 @@ public class IndexController {
         indexs.deleteById(id);
         return "redirect:/";
     }
+
+    @GetMapping("/minesweeper/play/{id}")
+    public String play(@PathVariable UUID id, Model model) {
+
+        var index = indexs.findById(id).orElseThrow(() -> new RuntimeException("Meeting not found"));
+        model.addAttribute("index", index);
+
+        return "play";
+    }
+
+
 
 }
