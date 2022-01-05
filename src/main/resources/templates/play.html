@@ -12,8 +12,8 @@
 
     <table class="table_minesweeper">
 
-        <tr th:each="row: ${index.getMinefield()}">
-            <td class="td_minesweeper" th:each="column:${index.getMinefield()[row]}" th:text="-"></td>
+        <tr th:each="ligne: ${index.getMinefield()}">
+            <td class="td_minesweeper" th:each="case: ${ligne}" th:text="${case}"></td>
 
         </tr>
 

@@ -57,20 +57,16 @@ public class IndexController {
             m = indexs.findById(form.getId()).orElseThrow(() -> new RuntimeException("Game not found"));
 
         }
+
         m.setCount(form.getCount());
         m.setHeight(form.getHeight());
         m.setWidth(form.getWidth());
+        m = service.create(m.getWidth(), m.getHeight(), m.getCount());
         indexs.save(m);
 
 
-        m = service.create(m.getWidth(), m.getHeight(), m.getCount());
-        for (int row = 0; row < m.getWidth(); row++) {
-            System.out.println();
-            for (int col = 0; col < m.getHeight(); col++) {
 
-                System.out.print(m.getMinefield()[row][col]);
-            }
-        }
+
 
         return "redirect:/";
     }
@@ -83,12 +79,29 @@ public class IndexController {
 
     @GetMapping("/minesweeper/play/{id}")
     public String play(@PathVariable UUID id, Model model, MinesweeperEngineService service) {
-        var index = indexs.findById(id).orElseThrow(() -> new RuntimeException("Meeting not found"));
+        var index = new Minefield();
         model.addAttribute("index", index);
-        System.out.println(index.getCount());
-        System.out.println(index.getHeight());
-        System.out.println(index.getWidth());
-        System.out.println(index.getId());
+        if (id != null) {
+            Minefield m = indexs.findById(id).orElseThrow(() -> new RuntimeException("Meeting not found"));
+
+            index.setId(m.getId());
+            index.setWidth(m.getWidth());
+            index.setHeight(m.getHeight());
+            index.setCount(m.getCount());
+            index.setMinefield(m.getMinefield());
+
+            System.out.println(index.getCount());
+            System.out.println(index.getHeight());
+            System.out.println(index.getWidth());
+            System.out.println(index.getId());
+            for (int row = 0; row < index.getWidth(); row++) {
+                System.out.println();
+                for (int col = 0; col < index.getHeight(); col++) {
+
+                    System.out.print(index.getMinefield()[row][col]);
+                }
+            }
+        }
 
         // service.play(index,index.getWidth(),index.getHeight());
 

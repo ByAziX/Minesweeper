@@ -4,11 +4,11 @@
     width : 250px;
     height : 250px;
     border : solid 3px black;
-     border-collapse: collapse;
+    border-collapse: collapse;
 }
 .td_minesweeper
 {
     border : solid 3px black;
-    width : 33%;
-    height : 33%;
+    width : 10%;
+    height : 10%;
 }
