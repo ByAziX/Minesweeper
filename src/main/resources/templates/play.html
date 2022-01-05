@@ -7,10 +7,17 @@
 
     <h1 th:text="${index.getId()}">Welcome to Minesweeper</h1>
 
-    <table class="table">
+    <table class="table_minesweeper">
 
-        <tr th:each=row:"${}">
-            <td th:each="column:${}"></td>
+        <tr>
+            <td class="td_minesweeper" ></td>
+            <td class="td_minesweeper" ></td>
+            <td class="td_minesweeper" ></td>
+        </tr>
+        <tr>
+            <td class="td_minesweeper" ></td>
+            <td class="td_minesweeper" ></td>
+            <td class="td_minesweeper" ></td>
         </tr>
 
     </table>
