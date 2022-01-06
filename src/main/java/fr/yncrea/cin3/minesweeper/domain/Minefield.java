@@ -26,6 +26,12 @@ public class Minefield {
         this.width = width;
         this.height = height;
         this.minefield = new int[(int) width][(int) height];
+
+        for(int i = 0;i<width;i++){
+            for (int j=0;j<height;j++){
+                this.minefield[i][j] = 10;
+            }
+        }
     }
 
     public Minefield(long width, long height,long count) {
@@ -33,6 +39,12 @@ public class Minefield {
         this.height = height;
         this.count = count;
         this.minefield = new int[(int) width][(int) height];
+
+        for(int i = 0;i<width;i++){
+            for (int j=0;j<height;j++){
+                this.minefield[i][j] = 10;
+            }
+        }
     }
 
     public UUID getId() {

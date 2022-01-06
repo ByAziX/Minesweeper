@@ -9,6 +9,7 @@ import java.util.Random;
 
 @Service
 public class MinesweeperEngineService {
+
     /**
      * Create a new minefield
      *
@@ -42,6 +43,38 @@ public class MinesweeperEngineService {
      * @param y
      */
     public void play(Minefield minefield, long x, long y) {
+        /*int[][] minefield_tab = minefield.getMinefield();
+
+        if (!(x < 0 || x > minefield.getWidth() -1 || y < 0 || y > minefield.getHeight() -1 || minefield_tab[(int) x][(int) y] == 9)) {
+            minefield_tab[(int) x][(int) y] = (int) getMineCountNear(minefield, x, y);
+            minefield.setMinefield(minefield_tab);
+            System.out.println();
+            for (int row = 0; row < minefield.getWidth(); row++) {
+                System.out.println();
+                for (int col = 0; col < minefield.getHeight(); col++) {
+
+                    System.out.print(minefield.getMinefield()[row][col]);
+                }
+            }
+                play(minefield, x - 1, y);
+                play(minefield, x, y - 1);
+                /*play(minefield, x, y + 1);
+                play(minefield, x + 1, y);
+
+
+
+
+        }*/
+        if (!(x < 0 || x > minefield.getWidth() -1 || y < 0 || y > minefield.getHeight() -1 || !isDiscovered(minefield,x,y))) {
+            for (int row = 0; row < minefield.getWidth(); row++) {
+                System.out.println();
+                for (int col = 0; col < minefield.getHeight(); col++) {
+
+                    System.out.print(minefield.getMinefield()[row][col]);
+                }
+            }
+        }
+
 
     }
 
@@ -55,8 +88,8 @@ public class MinesweeperEngineService {
     public void addMine(Minefield minefield, long x, long y) {
         int[][] minefield_tab = minefield.getMinefield();
 
-        if (minefield_tab[(int) x][(int) y] != 999) {
-            minefield_tab[(int) x][(int) y] = 999;
+        if (minefield_tab[(int) x][(int) y] != 9) {
+            minefield_tab[(int) x][(int) y] = 9;
         } else {
             throw new MinesweeperException("il y déjà une mine x=" + x + " y=" + y + "");
         }
@@ -76,7 +109,7 @@ public class MinesweeperEngineService {
         int count_bomb;
         int case_tab_x_min, case_tab_y_min, case_tab_x_max, case_tab_y_max = 0;
 
-        if (minefield.getMinefield()[(int) x][(int) y] != 999) {
+        if (minefield.getMinefield()[(int) x][(int) y] != 9) {
             count_bomb = 0;
 
             case_tab_x_min = x > 0 ? (int) (x - 1) : (int) x;
@@ -86,7 +119,7 @@ public class MinesweeperEngineService {
 
             for (int row_case = case_tab_x_min; row_case <= case_tab_x_max; row_case++) {
                 for (int col_case = case_tab_y_min; col_case <= case_tab_y_max; col_case++) {
-                    if (minefield.getMinefield()[row_case][col_case] == 999) {
+                    if (minefield.getMinefield()[row_case][col_case] == 9) {
                         count_bomb++;
                     }
                 }
@@ -106,7 +139,7 @@ public class MinesweeperEngineService {
      * @return
      */
     public boolean hasMine(Minefield minefield, long x, long y) {
-        return minefield.getMinefield()[(int) x][(int) y] == 999;
+        return minefield.getMinefield()[(int) x][(int) y] == 9;
     }
 
     /**
@@ -118,6 +151,11 @@ public class MinesweeperEngineService {
      * @return
      */
     public boolean isDiscovered(Minefield minefield, long x, long y) {
-        return false;
-    }
+        if (minefield.getMinefield()[(int) x][(int) y] == 10) {
+            return false;
+        }else{
+            return true;
+        }
+
+        }
 }

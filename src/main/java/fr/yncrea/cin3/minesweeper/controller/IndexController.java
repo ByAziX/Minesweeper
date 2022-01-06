@@ -98,7 +98,7 @@ public class IndexController {
         return "play";
     }
 
-    @GetMapping("/minesweeper/play/{id}/{row}/{col}")
+    @GetMapping("/minesweeper/play/{id}/{col}/{row}")
     public String playClick(@PathVariable UUID id, @PathVariable int row, @PathVariable int col, Model model, MinesweeperEngineService service) {
         var index = new Minefield();
         model.addAttribute("index", index);
