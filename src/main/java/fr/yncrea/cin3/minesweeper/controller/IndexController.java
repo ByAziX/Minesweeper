@@ -46,7 +46,7 @@ public class IndexController {
 
     //traiter le formulaire (ajout en base), puis redirige vers la liste
     @PostMapping({"/minesweeper/create"})
-    public String createGame(@Valid @ModelAttribute("form") IndexForm form, BindingResult result, Model model, MinesweeperEngineService service) {
+    public String createPost(@Valid @ModelAttribute("form") IndexForm form, BindingResult result, Model model, MinesweeperEngineService service) {
         int count = 0;
         if (result.hasErrors()) {
             model.addAttribute("form", form);
@@ -54,8 +54,7 @@ public class IndexController {
         }
         Minefield m = new Minefield();
         if (form.getId() != null) {
-            m = indexs.findById(form.getId()).orElseThrow(() -> new RuntimeException("Game not found"));
-
+            m = indexs.findById(form.getId()).orElseThrow(() -> new MinesweeperException("Game not found"));
         }
 
         m.setCount(form.getCount());
@@ -79,17 +78,14 @@ public class IndexController {
         var index = new Minefield();
         model.addAttribute("index", index);
         if (id != null) {
-            Minefield m = indexs.findById(id).orElseThrow(() -> new RuntimeException("Meeting not found"));
+            Minefield m = indexs.findById(id).orElseThrow(() -> new MinesweeperException("Meeting not found"));
             index.setId(m.getId());
             index.setWidth(m.getWidth());
             index.setHeight(m.getHeight());
             index.setCount(m.getCount());
             index.setMinefield(m.getMinefield());
 
-            System.out.println(index.getCount());
-            System.out.println(index.getHeight());
-            System.out.println(index.getWidth());
-            System.out.println(index.getId());
+
             for (int row = 0; row < index.getWidth(); row++) {
                 System.out.println();
                 for (int col = 0; col < index.getHeight(); col++) {
@@ -99,7 +95,22 @@ public class IndexController {
             }
         }
 
+        return "play";
+    }
 
+    @GetMapping("/minesweeper/play/{id}/{row}/{col}")
+    public String playClick(@PathVariable UUID id, @PathVariable int row, @PathVariable int col, Model model, MinesweeperEngineService service) {
+        var index = new Minefield();
+        model.addAttribute("index", index);
+        if (id != null) {
+            Minefield m = indexs.findById(id).orElseThrow(() -> new MinesweeperException("Meeting not found"));
+            index.setId(m.getId());
+            index.setWidth(m.getWidth());
+            index.setHeight(m.getHeight());
+            index.setCount(m.getCount());
+            index.setMinefield(m.getMinefield());
+            service.play(index, row, col);
+        }
 
         return "play";
     }

@@ -55,11 +55,10 @@ public class MinesweeperEngineService {
     public void addMine(Minefield minefield, long x, long y) {
         int[][] minefield_tab = minefield.getMinefield();
 
-
-        if (minefield_tab[(int) x][(int) y] != 1) {
-            minefield_tab[(int) x][(int) y] = 1;
+        if (minefield_tab[(int) x][(int) y] != 999) {
+            minefield_tab[(int) x][(int) y] = 999;
         } else {
-            throw new MinesweeperException("il y déjà une mine");
+            throw new MinesweeperException("il y déjà une mine x=" + x + " y=" + y + "");
         }
 
         minefield.setMinefield(minefield_tab);
@@ -75,29 +74,22 @@ public class MinesweeperEngineService {
      */
     public long getMineCountNear(Minefield minefield, long x, long y) {
         int count_bomb;
-        int case_tab_x_min = 0;
-        int case_tab_y_min = 0;
-        int case_tab_x_max = 0;
-        int case_tab_y_max = 0;
+        int case_tab_x_min, case_tab_y_min, case_tab_x_max, case_tab_y_max = 0;
 
-        if (minefield.getMinefield()[(int) x][(int) y] != 1) {
+        if (minefield.getMinefield()[(int) x][(int) y] != 999) {
             count_bomb = 0;
 
             case_tab_x_min = x > 0 ? (int) (x - 1) : (int) x;
             case_tab_y_min = y > 0 ? (int) (y - 1) : (int) y;
-            case_tab_x_max = x < minefield.getWidth()-1 ? (int) (x+1) : (int) (x);
-            case_tab_y_max = y < minefield.getHeight()-1 ? (int) (y+1) : (int) (y);
+            case_tab_x_max = x < minefield.getWidth() - 1 ? (int) (x + 1) : (int) (x);
+            case_tab_y_max = y < minefield.getHeight() - 1 ? (int) (y + 1) : (int) (y);
 
             for (int row_case = case_tab_x_min; row_case <= case_tab_x_max; row_case++) {
-
-                System.out.print(row_case);
                 for (int col_case = case_tab_y_min; col_case <= case_tab_y_max; col_case++) {
-                    if (minefield.getMinefield()[row_case][col_case] == 1) {
-                        System.out.println(col_case);
+                    if (minefield.getMinefield()[row_case][col_case] == 999) {
                         count_bomb++;
                     }
                 }
-
             }
             return count_bomb;
         }
@@ -114,7 +106,7 @@ public class MinesweeperEngineService {
      * @return
      */
     public boolean hasMine(Minefield minefield, long x, long y) {
-        return minefield.getMinefield()[(int) x][(int) y] == 1;
+        return minefield.getMinefield()[(int) x][(int) y] == 999;
     }
 
     /**
