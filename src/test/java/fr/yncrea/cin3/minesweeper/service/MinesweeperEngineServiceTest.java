@@ -24,7 +24,7 @@ class MinesweeperEngineServiceTest {
 
         assertThrows(MinesweeperException.class, () -> service.addMine(minefield, -1, 2));
         assertThrows(MinesweeperException.class, () -> service.addMine(minefield, 2, -1));
-        assertThrows(MinesweeperException.class, () -> service.addMine(minefield, 4, 2));
+        assertThrows(MinesweeperException.class, () -> service.addMine(minefield, 3, 2));
         assertThrows(MinesweeperException.class, () -> service.addMine(minefield, 2, 4));
     }
 

@@ -65,9 +65,6 @@ public class IndexController {
         indexs.save(m);
 
 
-
-
-
         return "redirect:/";
     }
 
@@ -78,7 +75,7 @@ public class IndexController {
     }
 
     @GetMapping("/minesweeper/play/{id}")
-    public String play(@PathVariable UUID id, Model model, MinesweeperEngineService service) {
+    public String play(@PathVariable UUID id, Model model) {
         var index = new Minefield();
         model.addAttribute("index", index);
         if (id != null) {
@@ -103,10 +100,14 @@ public class IndexController {
             }
         }
 
-        // service.play(index,index.getWidth(),index.getHeight());
+
 
         return "play";
     }
 
-
+    @PostMapping("/minesweeper/play/{id}")
+    public String playPost( MinesweeperEngineService service) {
+       // service.play(index, index.getWidth(), index.getHeight());
+        return "redirect:/";
+    }
 }

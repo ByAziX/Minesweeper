@@ -25,7 +25,7 @@ public class Minefield {
     public Minefield(long width, long height) {
         this.width = width;
         this.height = height;
-
+        this.minefield = new int[(int) width][(int) height];
     }
 
     public Minefield(long width, long height,long count) {

@@ -74,8 +74,21 @@ public class MinesweeperEngineService {
      * @return
      */
     public long getMineCountNear(Minefield minefield, long x, long y) {
+        int count_bomb = 0;
+
+                if (minefield.getMinefield()[(int) x][(int) y] != 1) {
+                    for (int row_case = (int) (x - 1); row_case <= minefield.getWidth() + 1; row_case++) {
+                        System.out.println();
+                        for (int col_case = (int) (y - 1); col_case <= minefield.getHeight() + 1; col_case++) {
+                            count_bomb++;
+                        }
+                    }
+                    System.out.println(count_bomb);
+                    return count_bomb;
+                }
         return 0;
     }
+
 
     /**
      * Returns true is the cell contains a mine
@@ -86,7 +99,11 @@ public class MinesweeperEngineService {
      * @return
      */
     public boolean hasMine(Minefield minefield, long x, long y) {
-        return false;
+        if (minefield.getMinefield()[(int) x][(int) y] == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
