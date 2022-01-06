@@ -74,18 +74,33 @@ public class MinesweeperEngineService {
      * @return
      */
     public long getMineCountNear(Minefield minefield, long x, long y) {
-        int count_bomb = 0;
+        int count_bomb;
+        int case_tab_x_min = 0;
+        int case_tab_y_min = 0;
+        int case_tab_x_max = 0;
+        int case_tab_y_max = 0;
 
-                if (minefield.getMinefield()[(int) x][(int) y] != 1) {
-                    for (int row_case = (int) (x - 1); row_case <= minefield.getWidth() + 1; row_case++) {
-                        System.out.println();
-                        for (int col_case = (int) (y - 1); col_case <= minefield.getHeight() + 1; col_case++) {
-                            count_bomb++;
-                        }
+        if (minefield.getMinefield()[(int) x][(int) y] != 1) {
+            count_bomb = 0;
+
+            case_tab_x_min = x > 0 ? (int) (x - 1) : (int) x;
+            case_tab_y_min = y > 0 ? (int) (y - 1) : (int) y;
+            case_tab_x_max = x < minefield.getWidth()-1 ? (int) (x+1) : (int) (x);
+            case_tab_y_max = y < minefield.getHeight()-1 ? (int) (y+1) : (int) (y);
+
+            for (int row_case = case_tab_x_min; row_case <= case_tab_x_max; row_case++) {
+
+                System.out.print(row_case);
+                for (int col_case = case_tab_y_min; col_case <= case_tab_y_max; col_case++) {
+                    if (minefield.getMinefield()[row_case][col_case] == 1) {
+                        System.out.println(col_case);
+                        count_bomb++;
                     }
-                    System.out.println(count_bomb);
-                    return count_bomb;
                 }
+
+            }
+            return count_bomb;
+        }
         return 0;
     }
 
@@ -99,11 +114,7 @@ public class MinesweeperEngineService {
      * @return
      */
     public boolean hasMine(Minefield minefield, long x, long y) {
-        if (minefield.getMinefield()[(int) x][(int) y] == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return minefield.getMinefield()[(int) x][(int) y] == 1;
     }
 
     /**

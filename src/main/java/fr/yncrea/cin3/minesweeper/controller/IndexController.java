@@ -80,7 +80,6 @@ public class IndexController {
         model.addAttribute("index", index);
         if (id != null) {
             Minefield m = indexs.findById(id).orElseThrow(() -> new RuntimeException("Meeting not found"));
-
             index.setId(m.getId());
             index.setWidth(m.getWidth());
             index.setHeight(m.getHeight());
@@ -103,11 +102,5 @@ public class IndexController {
 
 
         return "play";
-    }
-
-    @PostMapping("/minesweeper/play/{id}")
-    public String playPost( MinesweeperEngineService service) {
-       // service.play(index, index.getWidth(), index.getHeight());
-        return "redirect:/";
     }
 }

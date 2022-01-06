@@ -12,8 +12,12 @@
 
     <table class="table_minesweeper">
 
-        <tr th:each="ligne: ${index.getMinefield()}">
-            <td class="td_minesweeper" th:each="case: ${ligne}" th:text="${case}" oneclick="location.href='/minesweeper/play/43/4/2'"></td>
+        <tr th:each="ligne,indexRow: ${index.getMinefield()}">
+            <td class="td_minesweeper"
+                th:each="case,indexCol: ${ligne}"
+                th:data-case="'/minesweeper/'${index.getId()}+'/'+${indexCol.index}+'/'+${indexRow.index}"
+                oneclick="window.location.href = this.getAttribute('data-case')"
+                th:text="${case}"></td>
         </tr>
 
     </table>
