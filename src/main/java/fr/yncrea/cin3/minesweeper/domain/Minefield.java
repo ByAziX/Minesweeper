@@ -28,11 +28,11 @@ public class Minefield {
         this.width = width;
         this.height = height;
         this.state = 1;
-        this.minefield = new int[(int) width][(int) height];
+        this.minefield = new int[(int) height][(int) width];
         this.count_discover = 0;
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                this.minefield[i][j] = 10;
+                this.minefield[j][i] = 10;
             }
         }
     }
@@ -42,11 +42,11 @@ public class Minefield {
         this.height = height;
         this.count = count;
         this.state = 1;
-        this.minefield = new int[(int) width][(int) height];
+        this.minefield = new int[(int) height][(int) width];
         this.count_discover = 0;
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                this.minefield[i][j] = 10;
+                this.minefield[j][i] = 10;
             }
         }
     }
