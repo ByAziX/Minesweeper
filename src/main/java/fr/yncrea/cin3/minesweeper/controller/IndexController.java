@@ -60,17 +60,11 @@ public class IndexController {
         m.setCount(form.getCount());
         m.setHeight(form.getHeight());
         m.setWidth(form.getWidth());
-        try{
         m = service.create(m.getWidth(), m.getHeight(), m.getCount());
-            indexs.save(m);
-            return "redirect:/minesweeper/play/" + m.getId() + "";}
-        catch (MinesweeperException e){
-            return "redirect:/minesweeper/create";
-        }
+        indexs.save(m);
 
 
-
-
+        return "redirect:/minesweeper/play/" + m.getId() + "";
     }
 
     @PostMapping("/minesweeper/delete/{id}")
@@ -122,6 +116,7 @@ public class IndexController {
             try {
                 service.play(index, col, row);
             } catch (MinesweeperException e) {
+
             }
             indexs.save(index);
         }

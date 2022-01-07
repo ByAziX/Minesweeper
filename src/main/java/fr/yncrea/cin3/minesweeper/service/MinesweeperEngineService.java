@@ -65,9 +65,9 @@ public class MinesweeperEngineService {
                         }
                     } else if (hasMine(minefield, x, y)) {
                         minefield.setState(0);
-                        for (int row = 0; row < minefield.getWidth(); row++) {
+                        for (int row = 0; row < minefield.getWidth()-1; row++) {
                             System.out.println();
-                            for (int col = 0; col < minefield.getHeight(); col++) {
+                            for (int col = 0; col < minefield.getHeight()-1; col++) {
                                 if (minefield_tab[row][col] == 9) {
                                     minefield_tab[row][col] = -1;
                                     minefield.setMinefield(minefield_tab);
@@ -110,9 +110,9 @@ public class MinesweeperEngineService {
                     }
                 } else {
                     minefield.setState(2);
-                    for (int row = 0; row < minefield.getWidth(); row++) {
+                    for (int row = 0; row < minefield.getWidth()-1; row++) {
                         System.out.println();
-                        for (int col = 0; col < minefield.getHeight(); col++) {
+                        for (int col = 0; col < minefield.getHeight()-1; col++) {
                             if (minefield_tab[row][col] == 9) {
                                 minefield_tab[row][col] = -1;
                                 minefield.setMinefield(minefield_tab);
