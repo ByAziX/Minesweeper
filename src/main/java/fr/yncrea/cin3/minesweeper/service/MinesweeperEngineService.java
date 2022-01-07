@@ -54,13 +54,17 @@ public class MinesweeperEngineService {
         if ((!(x < 0 || x > minefield.getWidth() - 1 || y < 0 || y > minefield.getHeight() - 1) && !isDiscovered(minefield, x, y))) {
 
 
-            if (minefield.getMinefield()[(int) x][(int) y] == 10) {
+            if (minefield.getMinefield()[(int) x][(int) y] == 10 && minefield.getState() == 1 ) {
                 try {
+
                     fool_fill(minefield, x, y);
 
                 } catch (MinesweeperException e) {
                     System.out.println(e.getMessage());
                 }
+            }else if(hasMine(minefield,x,y)){
+                minefield.setState(0);
+                System.out.println("oui");
             }
             minefield.setMinefield(minefield_tab);
 
@@ -76,14 +80,21 @@ public class MinesweeperEngineService {
         if ((!(x < 0 || x > minefield.getWidth() - 1 || y < 0 || y > minefield.getHeight() - 1))) {
 
             if (minefield.getMinefield()[(int) x][(int) y] == 10) {
+
                 minefield.getMinefield()[(int) x][(int) y] = (int) getMineCountNear(minefield, x, y);
-                if (minefield.getMinefield()[(int) x][(int) y] == 0) {
-                    fool_fill(minefield, x - 1, y);
-                    fool_fill(minefield, x, y + 1);
-                    fool_fill(minefield, x + 1, y);
-                    fool_fill(minefield, x, y - 1);
-                    fool_fill(minefield, x+1, y + 1);
-                    fool_fill(minefield, x-1, y - 1);
+                minefield.setCount_discover(minefield.getCount_discover()+1);
+                if(minefield.getCount_discover() != (minefield.getWidth()*minefield.getHeight()-minefield.getCount())) {
+                    if (minefield.getMinefield()[(int) x][(int) y] == 0) {
+                        fool_fill(minefield, x - 1, y);
+                        fool_fill(minefield, x, y + 1);
+                        fool_fill(minefield, x + 1, y);
+                        fool_fill(minefield, x, y - 1);
+                        fool_fill(minefield, x + 1, y + 1);
+                        fool_fill(minefield, x - 1, y - 1);
+                    }
+                }else{
+                    minefield.setState(1);
+                    System.out.println("Gagné");
                 }
             }
         }
@@ -164,10 +175,8 @@ public class MinesweeperEngineService {
      * @return
      */
     public boolean isDiscovered(Minefield minefield, long x, long y) {
-        if (hasMine(minefield, x, y)) {
-            return true;
-        }
-        if (minefield.getMinefield()[(int) x][(int) y] == 10) {
+
+        if (minefield.getMinefield()[(int) x][(int) y] == 10 || hasMine(minefield, x, y)) {
             return false;
         } else {
             return true;

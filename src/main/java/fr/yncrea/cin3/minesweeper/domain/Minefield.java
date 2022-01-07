@@ -1,7 +1,6 @@
 package fr.yncrea.cin3.minesweeper.domain;
 
 
-
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -17,33 +16,36 @@ public class Minefield {
     private long height;
     private long count;
     private long state;
+    private long count_discover;
+
     @Lob
     private int[][] minefield;
 
-    public Minefield() {}
+    public Minefield() {
+    }
 
     public Minefield(long width, long height) {
         this.width = width;
         this.height = height;
         this.state = 1;
         this.minefield = new int[(int) width][(int) height];
-
-        for(int i = 0;i<width;i++){
-            for (int j=0;j<height;j++){
+        this.count_discover = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 this.minefield[i][j] = 10;
             }
         }
     }
 
-    public Minefield(long width, long height,long count) {
+    public Minefield(long width, long height, long count) {
         this.width = width;
         this.height = height;
         this.count = count;
         this.state = 1;
         this.minefield = new int[(int) width][(int) height];
-
-        for(int i = 0;i<width;i++){
-            for (int j=0;j<height;j++){
+        this.count_discover = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 this.minefield[i][j] = 10;
             }
         }
@@ -95,5 +97,13 @@ public class Minefield {
 
     public void setState(long state) {
         this.state = state;
+    }
+
+    public long getCount_discover() {
+        return count_discover;
+    }
+
+    public void setCount_discover(long count_discover) {
+        this.count_discover = count_discover;
     }
 }
