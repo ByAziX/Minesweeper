@@ -64,7 +64,7 @@ public class IndexController {
         indexs.save(m);
 
 
-        return "redirect:/minesweeper/play/"+m.getId()+"";
+        return "redirect:/minesweeper/play/" + m.getId() + "";
     }
 
     @PostMapping("/minesweeper/delete/{id}")
@@ -113,7 +113,10 @@ public class IndexController {
             index.setState(m.getState());
             index.setCount_discover(m.getCount_discover());
             index.setMinefield(m.getMinefield());
-            service.play(index, col, row);
+            try {
+                service.play(index, col, row);
+            } catch (MinesweeperException e) {
+            }
             indexs.save(index);
         }
 
