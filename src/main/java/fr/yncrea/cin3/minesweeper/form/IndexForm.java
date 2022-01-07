@@ -11,10 +11,12 @@ public class IndexForm {
     private UUID id;
 
     @Max(20)
+    @Min(2)
     @NotNull
     private Long width;
 
     @Min(2)
+    @Max(20)
     @NotNull
     private Long height;
     @NotNull

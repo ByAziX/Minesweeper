@@ -74,7 +74,6 @@ public class MinesweeperEngineService {
                                 }
                             }
                         }
-
                     }
                 } else {
                     throw new MinesweeperException("Game fini vous ne pouvez pas jouer");
@@ -107,6 +106,8 @@ public class MinesweeperEngineService {
                         fool_fill(minefield, x, y - 1);
                         fool_fill(minefield, x + 1, y + 1);
                         fool_fill(minefield, x - 1, y - 1);
+                        fool_fill(minefield, x + 1, y - 1);
+                        fool_fill(minefield, x - 1, y + 1);
                     }
                 } else {
                     minefield.setState(2);
