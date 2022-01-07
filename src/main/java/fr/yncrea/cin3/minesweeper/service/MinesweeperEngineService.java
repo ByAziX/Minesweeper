@@ -92,6 +92,7 @@ public class MinesweeperEngineService {
 
 
     public void fool_fill(Minefield minefield, long x, long y) {
+        int[][] minefield_tab = minefield.getMinefield();
         if ((!(x < 0 || x > minefield.getWidth() - 1 || y < 0 || y > minefield.getHeight() - 1))) {
 
             if (minefield.getMinefield()[(int) y][(int) x] == 10) {
@@ -109,7 +110,15 @@ public class MinesweeperEngineService {
                     }
                 } else {
                     minefield.setState(2);
-
+                    for (int row = 0; row < minefield.getWidth(); row++) {
+                        System.out.println();
+                        for (int col = 0; col < minefield.getHeight(); col++) {
+                            if (minefield_tab[row][col] == 9) {
+                                minefield_tab[row][col] = -1;
+                                minefield.setMinefield(minefield_tab);
+                            }
+                        }
+                    }
                 }
             }
         }
