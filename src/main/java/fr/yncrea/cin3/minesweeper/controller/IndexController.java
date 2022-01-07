@@ -86,13 +86,13 @@ public class IndexController {
             index.setMinefield(m.getMinefield());
 
 
-            for (int row = 0; row < index.getWidth(); row++) {
+           /* for (int row = 0; row < index.getWidth(); row++) {
                 System.out.println();
                 for (int col = 0; col < index.getHeight(); col++) {
 
                     System.out.print(index.getMinefield()[row][col]);
                 }
-            }
+            }*/
         }
 
         return "play";
@@ -110,6 +110,7 @@ public class IndexController {
             index.setCount(m.getCount());
             index.setMinefield(m.getMinefield());
             service.play(index, row, col);
+            indexs.save(index);
         }
 
         return "play";

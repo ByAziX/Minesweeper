@@ -24,7 +24,7 @@ class MinesweeperEngineServiceTest {
 
         assertThrows(MinesweeperException.class, () -> service.addMine(minefield, -1, 2));
         assertThrows(MinesweeperException.class, () -> service.addMine(minefield, 2, -1));
-        assertThrows(MinesweeperException.class, () -> service.addMine(minefield, 3, 2));
+        assertThrows(MinesweeperException.class, () -> service.addMine(minefield, 4, 2));
         assertThrows(MinesweeperException.class, () -> service.addMine(minefield, 2, 4));
     }
 
@@ -232,6 +232,16 @@ class MinesweeperEngineServiceTest {
     @Test
     @DisplayName("Play should be impossible on already discovered cell")
     public void testPlayAlreadyDiscovered() {
+        Minefield minefield = new Minefield(4, 4);
+        service.addMine(minefield, 3, 3);
+        service.play(minefield, 0, 0);
+
+        assertThrows(MinesweeperException.class, () -> service.play(minefield, 0, 0));
+    }
+
+    @Test
+    @DisplayName("Play should be impossible on already discovered cell by auto-discover")
+    public void testPlayAlreadyDiscoveredByAutoDiscover() {
         Minefield minefield = new Minefield(4, 4);
         service.addMine(minefield, 3, 3);
         service.play(minefield, 0, 0);
