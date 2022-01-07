@@ -5,7 +5,7 @@
 <body>
 <div th:fragment="content">
     <div th:if="${index.getState() == 2}">Vous avez gagné</div>
-<div th:if="${index.getState() != 1 }">Vous ne pouvez pas jouer ici</div>
+<div th:if="${index.getState() == 1 }">Partie en cours</div>
 <div th:if="${index.getState() == 0}">Vous avez Perdu</div>
     <table class="table_minesweeper">
 

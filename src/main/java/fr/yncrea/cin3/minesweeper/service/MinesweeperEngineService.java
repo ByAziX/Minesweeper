@@ -65,8 +65,15 @@ public class MinesweeperEngineService {
                         }
                     } else if (hasMine(minefield, x, y)) {
                         minefield.setState(0);
-                        minefield_tab[(int) y][(int) x] = -1;
-                        minefield.setMinefield(minefield_tab);
+                        for (int row = 0; row < minefield.getWidth(); row++) {
+                            System.out.println();
+                            for (int col = 0; col < minefield.getHeight(); col++) {
+                                if (minefield_tab[row][col] == 9) {
+                                    minefield_tab[row][col] = -1;
+                                    minefield.setMinefield(minefield_tab);
+                                }
+                            }
+                        }
 
                     }
                 } else {
@@ -102,7 +109,7 @@ public class MinesweeperEngineService {
                     }
                 } else {
                     minefield.setState(2);
-                    System.out.println("Gagné");
+
                 }
             }
         }
@@ -184,7 +191,7 @@ public class MinesweeperEngineService {
      */
     public boolean isDiscovered(Minefield minefield, long x, long y) {
 
-        if (minefield.getMinefield()[(int) y][(int) x] == 10 || hasMine(minefield,x,y)) {
+        if (minefield.getMinefield()[(int) y][(int) x] == 10 || hasMine(minefield, x, y)) {
             return false;
         } else {
             return true;
