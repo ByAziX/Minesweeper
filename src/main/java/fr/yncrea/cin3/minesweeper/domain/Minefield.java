@@ -16,7 +16,7 @@ public class Minefield {
     private long width;
     private long height;
     private long count;
-
+    private long state;
     @Lob
     private int[][] minefield;
 
@@ -25,6 +25,7 @@ public class Minefield {
     public Minefield(long width, long height) {
         this.width = width;
         this.height = height;
+        this.state = 1;
         this.minefield = new int[(int) width][(int) height];
 
         for(int i = 0;i<width;i++){
@@ -38,6 +39,7 @@ public class Minefield {
         this.width = width;
         this.height = height;
         this.count = count;
+        this.state = 1;
         this.minefield = new int[(int) width][(int) height];
 
         for(int i = 0;i<width;i++){
@@ -85,5 +87,13 @@ public class Minefield {
 
     public void setMinefield(int[][] minefield) {
         this.minefield = minefield;
+    }
+
+    public long getState() {
+        return state;
+    }
+
+    public void setState(long state) {
+        this.state = state;
     }
 }

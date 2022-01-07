@@ -82,6 +82,7 @@ public class IndexController {
             index.setId(m.getId());
             index.setWidth(m.getWidth());
             index.setHeight(m.getHeight());
+            index.setState(m.getState());
             index.setCount(m.getCount());
             index.setMinefield(m.getMinefield());
 
@@ -108,6 +109,7 @@ public class IndexController {
             index.setWidth(m.getWidth());
             index.setHeight(m.getHeight());
             index.setCount(m.getCount());
+            index.setState(m.getState());
             index.setMinefield(m.getMinefield());
             service.play(index, row, col);
             indexs.save(index);
