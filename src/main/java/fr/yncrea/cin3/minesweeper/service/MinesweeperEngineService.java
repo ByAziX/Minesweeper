@@ -19,10 +19,10 @@ public class MinesweeperEngineService {
      * @return
      */
     public Minefield create(long width, long height, long count) {
-        if(count < 0 || count > height*width){
+        if (count < 0 || count > height * width) {
             throw new MinesweeperException("Nombre de bomb invalid");
         }
-        if(width < 2 || width > 20 || height > 20 || height < 2){
+        if (width < 2 || width > 20 || height > 20 || height < 2) {
             throw new MinesweeperException("minefield invalid size");
         }
         Minefield m = new Minefield(width, height, count);
@@ -51,15 +51,9 @@ public class MinesweeperEngineService {
     public void play(Minefield minefield, long x, long y) {
         int[][] minefield_tab = minefield.getMinefield();
         if ((!(x < 0 || x > minefield.getWidth() - 1 || y < 0 || y > minefield.getHeight() - 1) && !isDiscovered(minefield, x, y))) {
-
-            minefield_tab[(int) x][(int) y] = (int) getMineCountNear(minefield, x, y);
-
-            if (minefield.getMinefield()[(int) x][(int) y] == 0) {
+            if (minefield.getMinefield()[(int) x][(int) y] == 10) {
                 try {
-                    play(minefield, x - 1, y);
-                    play(minefield, x, y - 1);
-                    play(minefield, x, y + 1);
-                    play(minefield, x + 1, y);
+                    fool_fill(minefield, x, y);
                 } catch (MinesweeperException e) {
                     System.out.println(e.getMessage());
                 }
@@ -73,6 +67,18 @@ public class MinesweeperEngineService {
 
     }
 
+    public void fool_fill(Minefield minefield, long x, long y) {
+        if ((!(x < 0 || x > minefield.getWidth() - 1 || y < 0 || y > minefield.getHeight() - 1))) {
+            if (minefield.getMinefield()[(int) x][(int) y] == 10) {
+                minefield.getMinefield()[(int) x][(int) y] = (int) getMineCountNear(minefield, x, y);
+                fool_fill(minefield, x - 1, y);
+                fool_fill(minefield, x, y + 1);
+                fool_fill(minefield, x + 1, y);
+                fool_fill(minefield, x, y - 1);
+            }
+        }
+    }
+
     /**
      * Add a mine on the field
      *
@@ -82,7 +88,7 @@ public class MinesweeperEngineService {
      */
     public void addMine(Minefield minefield, long x, long y) {
         int[][] minefield_tab = minefield.getMinefield();
-        if( x<0 || x > minefield.getWidth() -1 || y> minefield.getHeight() -1 || y<0){
+        if (x < 0 || x > minefield.getWidth() - 1 || y > minefield.getHeight() - 1 || y < 0) {
             throw new MinesweeperException("mine out of bound");
         }
         if (minefield_tab[(int) x][(int) y] != 9) {
@@ -148,7 +154,7 @@ public class MinesweeperEngineService {
      * @return
      */
     public boolean isDiscovered(Minefield minefield, long x, long y) {
-        if (minefield.getMinefield()[(int) x][(int) y] == 10 || minefield.getMinefield()[(int) x][(int) y] == 9) {
+        if (minefield.getMinefield()[(int) x][(int) y] == 10 || hasMine(minefield, x, y)) {
             return false;
         } else {
             return true;
