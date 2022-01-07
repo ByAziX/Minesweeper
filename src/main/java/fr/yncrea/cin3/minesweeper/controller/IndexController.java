@@ -60,6 +60,7 @@ public class IndexController {
         m.setCount(form.getCount());
         m.setHeight(form.getHeight());
         m.setWidth(form.getWidth());
+
         m = service.create(m.getWidth(), m.getHeight(), m.getCount());
         indexs.save(m);
 
@@ -116,7 +117,6 @@ public class IndexController {
             try {
                 service.play(index, col, row);
             } catch (MinesweeperException e) {
-
             }
             indexs.save(index);
         }

@@ -68,8 +68,8 @@ public class MinesweeperEngineService {
                         for (int row = 0; row < minefield.getWidth()-1; row++) {
                             System.out.println();
                             for (int col = 0; col < minefield.getHeight()-1; col++) {
-                                if (minefield_tab[row][col] == 9) {
-                                    minefield_tab[row][col] = -1;
+                                if (minefield_tab[col][row] == 9) {
+                                    minefield_tab[col][row] = -1;
                                     minefield.setMinefield(minefield_tab);
                                 }
                             }
@@ -113,8 +113,8 @@ public class MinesweeperEngineService {
                     for (int row = 0; row < minefield.getWidth()-1; row++) {
                         System.out.println();
                         for (int col = 0; col < minefield.getHeight()-1; col++) {
-                            if (minefield_tab[row][col] == 9) {
-                                minefield_tab[row][col] = -1;
+                            if (minefield_tab[col][row] == 9) {
+                                minefield_tab[col][row] = -1;
                                 minefield.setMinefield(minefield_tab);
                             }
                         }
