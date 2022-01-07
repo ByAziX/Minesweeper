@@ -13,11 +13,11 @@
             <td class="td_minesweeper"
                 th:each="case,indexCol: ${ligne}"
                 th:data-case="'/minesweeper/play/'+${index.getId()}+'/'+${indexCol.index}+'/'+${indexRow.index}"
-                onclick="window.location.href = this.getAttribute('data-case')"><div class="div" th:text="(${case}<9) ? ${case} : '' "></div></td>
+                onclick="window.location.href = this.getAttribute('data-case')">
+                <div class="div" th:text="(${case}<9) ? ${case} : '' "></div>
+            </td>
         </tr>
-
     </table>
-
 </div>
 </body>
 </html>
