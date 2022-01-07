@@ -15,12 +15,11 @@ public class IndexForm {
     @NotNull
     private Long width;
 
-    @Min(2)
     @Max(20)
+    @Min(2)
     @NotNull
     private Long height;
     @NotNull
-
     private Long count;
 
     public IndexForm() {
