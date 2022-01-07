@@ -64,7 +64,7 @@ public class IndexController {
         indexs.save(m);
 
 
-        return "redirect:/";
+        return "redirect:/minesweeper/play/"+m.getId()+"";
     }
 
     @PostMapping("/minesweeper/delete/{id}")

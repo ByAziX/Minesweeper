@@ -74,13 +74,11 @@ public class MinesweeperEngineService {
                 }
                 minefield.setMinefield(minefield_tab);
 
-
             } else {
-                throw new MinesweeperException("Vous avez déjà clické ici");
+                throw new MinesweeperException("Vous avez déjà joué ici");
             }
 
         } else {
-
             throw new MinesweeperException("En dehors du tableau");
         }
     }

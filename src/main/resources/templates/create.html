@@ -12,8 +12,8 @@
 
         <div class="form-group"><label for="width">Field width</label> <input type="number" class="form-control"
                                                                            id="width"
-                                                                           placeholder="Field width"
-                                                                           th:field="*{width}">
+                                                                           placeholder="width"
+                                                                           th:field="*{width}" min="2" max="20" value="15">
             <div class="alert alert-danger" th:if="${#fields.hasErrors('width')}" th:errors="*{width}">Field
                 width invalide
             </div>
@@ -22,8 +22,8 @@
 
         <div class="form-group"><label for="height">Field height</label> <input type="number" class="form-control"
                                                                            id="height"
-                                                                           placeholder="Field height"
-                                                                           th:field="*{height}">
+                                                                           placeholder="height"
+                                                                           th:field="*{height}" min="2" max="20" value="15">
             <div class="alert alert-danger" th:if="${#fields.hasErrors('height')}" th:errors="*{height}">field height
                 invalide
             </div>
@@ -32,8 +32,8 @@
 
         <div class="form-group"><label for="count">Number of line</label> <input type="number" class="form-control"
                                                                            id="count"
-                                                                           placeholder="Number of line"
-                                                                           th:field="*{count}">
+                                                                           placeholder="mine"
+                                                                           th:field="*{count}" min="0" max="index.getWidth*index.getHeight" value="50">
             <div class="alert alert-danger" th:if="${#fields.hasErrors('count')}" th:errors="*{count}">line
                 invalide
             </div>

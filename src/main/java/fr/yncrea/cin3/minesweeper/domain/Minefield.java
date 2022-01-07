@@ -38,6 +38,7 @@ public class Minefield {
     }
 
     public Minefield(long width, long height, long count) {
+
         this.width = width;
         this.height = height;
         this.count = count;

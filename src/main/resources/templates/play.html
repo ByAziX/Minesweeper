@@ -4,7 +4,9 @@
 </head>
 <body>
 <div th:fragment="content">
-
+    <div th:if="${index.getState() == 2}">gagné</div>
+<div th:if="${index.getState() != 1}">Vous ne pouvez pas jouer ici</div>
+<div th:if="${index.getState() == 0}">Perdu</div>
     <table class="table_minesweeper">
 
         <tr th:each="ligne,indexRow: ${index.getMinefield()}">
